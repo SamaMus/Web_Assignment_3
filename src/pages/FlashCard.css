@@ -7,6 +7,7 @@
     transition: transform 0.5s;
     cursor: pointer;
     position: relative;
+    border-radius: 10px;
 }
 
 .flash-card.flipped {
@@ -23,25 +24,36 @@
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    border: 1px solid #ddd;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     backface-visibility: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Added to fix the visibility issue */
+}
+
+.front {
+    background-color: #3498db;
+    /* Blue */
 }
 
 .back {
+    background-color: #2ecc71;
+    /* Green */
     transform: rotateY(180deg);
 }
 
 .last-modified {
     margin-top: 10px;
     font-size: 0.8rem;
-    color: #888;
+    color: #ecf0f1;
+    /* Light Gray */
 }
 
 .status {
     margin-top: 5px;
     font-size: 1rem;
-    color: #333;
+    color: #ecf0f1;
+    /* Light Gray */
 }
 
 .status-buttons {
@@ -54,4 +66,21 @@ button {
     padding: 5px 10px;
     font-size: 0.8rem;
     cursor: pointer;
+    background-color: #e74c3c;
+    /* Red */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #c0392b;
+    /* Darker Red on Hover */
+}
+
+/* Additional styles for content display */
+.content {
+    text-align: center;
+    padding: 10px;
 }

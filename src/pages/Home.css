@@ -70,3 +70,44 @@ body {
 .flash-cards-link:hover {
     text-decoration: underline;
 }
+
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.project {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: transform 0.3s;
+}
+.project:hover {
+    transform: translateY(-5px);
+}
+.project h3 {
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.project p {
+    margin-top: 10px;
+}
+
+.project a {
+    display: block;
+    margin-top: 15px;
+    color: #2ecc71;
+    /* Green */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.project a:hover {
+    color: #27ae60;
+    /* Darker Green on Hover */
+}

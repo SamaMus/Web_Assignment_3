@@ -1,30 +1,57 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Home.css';
 
 const projects = [
-  { id: 1, title: 'Project 1', description: 'Description for Project 1' },
-  { id: 2, title: 'Project 2', description: 'Description for Project 2' },
+  {
+    id: 1,
+    title: 'React Tasks',
+    description: 'A project showcasing various tasks implemented using React.',
+    link: 'https://example.com/react-tasks',
+  },
+  {
+    id: 2,
+    title: 'JavaScript Tasks',
+    description: 'A collection of tasks implemented using JavaScript.',
+    link: 'https://example.com/javascript-tasks',
+  },
+  {
+    id: 3,
+    title: 'Personal Website',
+    description: 'My personal website built with HTML, CSS, and JavaScript.',
+    link: 'https://example.com/personal-website',
+  },
+  {
+    id: 4,
+    title: 'Software Engineering Project',
+    description: 'A software engineering project focusing on XYZ.',
+    link: 'https://example.com/software-engineering-project',
+  },
+  {
+    id: 5,
+    title: 'Web Mobile Assignment 2',
+    description: 'Assignment 2 for a web and mobile development course.',
+    link: 'https://example.com/web-mobile-assignment2',
+  },
 ];
 
 const Home = () => {
   return (
-    <div className="home-page">
-      <h1 className="welcome-text">Welcome to My Portfolio</h1>
-      <div className="home-container">
+    <div>
+      <h1>Welcome to My Portfolio</h1>
+      <p>General information about yourself...</p>
+
+      <h2>Projects</h2>
+      <div className="project-list">
         {projects.map((project) => (
-          <div key={project.id} className="project-box">
-            <h3 className="project-title">{project.title}</h3>
-            <p className="project-description">{project.description}</p>
-            <Link to={`/projects/${project.id}`} className="read-more-link">
-              Read more
-            </Link>
+          <div key={project.id} className="project">
+            <h3>{project.title}</h3>
+            <p>{project.description}</p>
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
+              View Project
+            </a>
           </div>
         ))}
       </div>
-      <Link to="/pages" className="flash-cards-link">
-        Go to Flash Cards
-      </Link>
     </div>
   );
 };
