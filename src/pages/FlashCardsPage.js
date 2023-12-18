@@ -1,26 +1,43 @@
-import React from 'react';
+// src/pages/FlashCardsPage.js
+import React, { useState } from 'react';
 import FlashCard from './FlashCard';
 
 const FlashCardsPage = () => {
-  const flashCards = [
-    { id: 1, frontText: 'Question 1', backText: 'Answer 1' },
-    { id: 2, frontText: 'Question 2', backText: 'Answer 2' },
-    { id: 3, frontText: 'Question 3', backText: 'Answer 3' },
-    { id: 4, frontText: 'Question 4', backText: 'Answer 4' },
-    { id: 5, frontText: 'Question 5', backText: 'Answer 5' },
-    { id: 6, frontText: 'Question 6', backText: 'Answer 6' },
-    { id: 7, frontText: 'Question 7', backText: 'Answer 7' },
-    { id: 8, frontText: 'Question 8', backText: 'Answer 8' },
-    { id: 9, frontText: 'Question 9', backText: 'Answer 9' },
-    { id: 10, frontText: 'Question 10', backText: 'Answer 10' },
-  ];
+  const [flashCards, setFlashCards] = useState([
+    { id: 1, frontText: 'Question 1', backText: 'Answer 1', lastModified: new Date(), status: 'Learned' },
+    { id: 2, frontText: 'Question 2', backText: 'Answer 2', lastModified: new Date(), status: 'Want to Learn' },
+    // Add more flash cards as needed
+  ]);
+
+  const updateLastModified = (id) => {
+    const updatedFlashCards = flashCards.map((card) =>
+      card.id === id ? { ...card, lastModified: new Date() } : card
+    );
+    setFlashCards(updatedFlashCards);
+  };
+
+  const updateCardStatus = (id, newStatus) => {
+    const updatedFlashCards = flashCards.map((card) =>
+      card.id === id ? { ...card, status: newStatus, lastModified: new Date() } : card
+    );
+    setFlashCards(updatedFlashCards);
+  };
 
   return (
     <div>
       <h1>Flash Cards</h1>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {flashCards.map((card) => (
-          <FlashCard key={card.id} frontText={card.frontText} backText={card.backText} />
+          <FlashCard
+            key={card.id}
+            id={card.id}
+            frontText={card.frontText}
+            backText={card.backText}
+            lastModified={card.lastModified}
+            status={card.status}
+            updateLastModified={updateLastModified}
+            updateCardStatus={updateCardStatus}
+          />
         ))}
       </div>
     </div>
