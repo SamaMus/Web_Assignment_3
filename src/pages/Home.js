@@ -22,7 +22,7 @@ const Home = () => {
           </div>
         ))}
       </div>
-      <Link to="/flashcards" className="flash-cards-link">
+      <Link to="/pages" className="flash-cards-link">
         Go to Flash Cards
       </Link>
     </div>

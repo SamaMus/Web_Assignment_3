@@ -1,4 +1,3 @@
-// src/pages/PortfolioPage.js
 import React from 'react';
 
 const PortfolioPage = () => {
