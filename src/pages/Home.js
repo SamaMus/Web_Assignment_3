@@ -1,4 +1,3 @@
-// Home.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
@@ -6,7 +5,6 @@ import './Home.css';
 const projects = [
   { id: 1, title: 'Project 1', description: 'Description for Project 1' },
   { id: 2, title: 'Project 2', description: 'Description for Project 2' },
-  // Add more projects as needed
 ];
 
 const Home = () => {
@@ -24,6 +22,9 @@ const Home = () => {
           </div>
         ))}
       </div>
+      <Link to="/flashcards" className="flash-cards-link">
+        Go to Flash Cards
+      </Link>
     </div>
   );
 };
