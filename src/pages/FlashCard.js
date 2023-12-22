@@ -15,13 +15,13 @@ const FlashCard = ({ id, frontText, backText, lastModified, status, updateLastMo
   };
 
   return (
-    <div className={`flash-card ${isFlipped ? 'flipped' : ''}`}>
-      <div className="front">
+    <div className={`flash-card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
+      <div className="card-content front">
         <div className="content">{frontText}</div>
         <div className="last-modified">Last Modified: {lastModified.toLocaleString()}</div>
         <div className="status">{status}</div>
       </div>
-      <div className="back">
+      <div className="card-content back">
         <div className="content">{backText}</div>
         <div className="last-modified">Last Modified: {lastModified.toLocaleString()}</div>
         <div className="status">{status}</div>
