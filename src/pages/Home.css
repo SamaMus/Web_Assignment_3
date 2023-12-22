@@ -95,19 +95,34 @@ body {
 }
 
 .project p {
-    margin-top: 10px;
+    color: #555;
 }
 
 .project a {
     display: block;
     margin-top: 15px;
     color: #2ecc71;
-    /* Green */
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s;
 }
 
 .project a:hover {
     color: #27ae60;
-    /* Darker Green on Hover */
+}
+.flashcards-link {
+    text-align: center;
+    margin-top: 30px;
+}
+.flashcards-link a {
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.flashcards-link a:hover {
+    background-color: #c0392b;
 }
