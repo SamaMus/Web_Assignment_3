@@ -1,21 +1,31 @@
-// src/pages/FlashCard.js
 import React, { useState } from 'react';
 import './FlashCard.css';
 
-const FlashCard = ({ id, frontText, backText, lastModified, status, updateLastModified, updateCardStatus }) => {
+const FlashCard = ({
+  id,
+  frontText,
+  backText,
+  lastModified,
+  status,
+  updateLastModified,
+  updateCardStatus,
+  onEdit,
+  onDelete,
+}) => {
   const [isFlipped, setFlipped] = useState(false);
 
-  const handleFlip = () => {
-    setFlipped(!isFlipped);
-    updateLastModified(id);
-  };
+  // Unused variable, you can remove it
+  // const handleFlip = () => {
+  //   setFlipped(!isFlipped);
+  //   updateLastModified(id);
+  // };
 
   const handleStatusChange = (newStatus) => {
     updateCardStatus(id, newStatus);
   };
 
   return (
-    <div className={`flash-card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
+    <div className={`flash-card ${isFlipped ? 'flipped' : ''}`} onMouseEnter={onEdit} onMouseLeave={onDelete}>
       <div className="card-content front">
         <div className="content">{frontText}</div>
         <div className="last-modified">Last Modified: {lastModified.toLocaleString()}</div>
