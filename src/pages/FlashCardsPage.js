@@ -32,7 +32,24 @@ const FlashCardsPage = () => {
           <Link to="/">Home</Link>
         </div>
       </header>
+       <div className="content">
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {flashCards.map((card) => (
+            <FlashCard
+              key={card.id}
+              id={card.id}
+              frontText={card.frontText}
+              backText={card.backText}
+              lastModified={card.lastModified}
+              status={card.status}
+              updateLastModified={updateLastModified}
+              updateCardStatus={updateCardStatus}
+            />
+          ))}
     </div>
+    </div>
+    </div>
+
   );
 };
 
