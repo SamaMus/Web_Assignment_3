@@ -1,0 +1,244 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "frontText": "The Shawshank Redemption",
+      "image": "",
+      "backAnswer": "Description: Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+      "releaseYear": 1994,
+      "imdbPoints": 9.3,
+      "info": "Based on the novella 'Rita Hayworth and Shawshank Redemption' by Stephen King.",
+      "director": "Frank Darabont",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 2,
+      "frontText": "The Godfather",
+      "image": "",
+      "backAnswer": "Description: The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+      "releaseYear": 1972,
+      "imdbPoints": 9.2,
+      "info": "Based on the novel by Mario Puzo.",
+      "director": "Francis Ford Coppola",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 3,
+      "frontText": "The Dark Knight",
+      "image": "",
+      "backAnswer": "Description: When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.",
+      "releaseYear": 2008,
+      "imdbPoints": 9.0,
+      "info": "Sequel to 'Batman Begins' and the second installment in Nolan's Batman film trilogy.",
+      "director": "Christopher Nolan",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 4,
+      "frontText": "The Lord of the Rings: The Return of the King",
+      "image": "",
+      "backAnswer": "Description: Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
+      "releaseYear": 2003,
+      "imdbPoints": 8.9,
+      "info": "Based on the novel by J.R.R. Tolkien.",
+      "director": "Peter Jackson",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 5,
+      "frontText": "Pulp Fiction",
+      "image": "",
+      "backAnswer": "Description: The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+      "releaseYear": 1994,
+      "imdbPoints": 8.9,
+      "info": "Directed by Quentin Tarantino.",
+      "director": "Quentin Tarantino",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 6,
+      "frontText": "Schindler's List",
+      "image": "",
+      "backAnswer": "Description: In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
+      "releaseYear": 1993,
+      "imdbPoints": 8.9,
+      "info": "Based on the novel by Thomas Keneally.",
+      "director": "Steven Spielberg",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 7,
+      "frontText": "Fight Club",
+      "image": "",
+      "backAnswer": "Description: An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into something much, much more.",
+      "releaseYear": 1999,
+      "imdbPoints": 8.8,
+      "info": "Based on the novel by Chuck Palahniuk.",
+      "director": "David Fincher",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 8,
+      "frontText": "Forrest Gump",
+      "image": "",
+      "backAnswer": "Description: The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other history unfold through the perspective of an Alabama man with an IQ of 75.",
+      "releaseYear": 1994,
+      "imdbPoints": 8.8,
+      "info": "Based on the novel by Winston Groom.",
+      "director": "Robert Zemeckis",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 9,
+      "frontText": "The Matrix",
+      "image": "",
+      "backAnswer": "Description: A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+      "releaseYear": 1999,
+      "imdbPoints": 8.7,
+      "info": "Directed by the Wachowskis.",
+      "director": "Wachowskis",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 10,
+      "frontText": "The Godfather: Part II",
+      "image": "",
+      "backAnswer": "Description: The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate.",
+      "releaseYear": 1974,
+      "imdbPoints": 9.0,
+      "info": "Sequel to 'The Godfather.'",
+      "director": "Francis Ford Coppola",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 11,
+      "frontText": "The Shawshank Redemption",
+      "image": "",
+      "backAnswer": "Description: Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+      "releaseYear": 1994,
+      "imdbPoints": 9.3,
+      "info": "Based on the novella 'Rita Hayworth and Shawshank Redemption' by Stephen King.",
+      "director": "Frank Darabont",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 12,
+      "frontText": "The Dark Knight Rises",
+      "image": "",
+      "backAnswer": "Description: Eight years after the Joker's reign of anarchy, Batman, with the help of the enigmatic Catwoman, is forced from his exile to save Gotham City from the brutal guerrilla terrorist Bane.",
+      "releaseYear": 2012,
+      "imdbPoints": 8.4,
+      "info": "Final installment in Nolan's Batman film trilogy.",
+      "director": "Christopher Nolan",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 13,
+      "frontText": "The Lord of the Rings: The Fellowship of the Ring",
+      "image": "",
+      "backAnswer": "Description: A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
+      "releaseYear": 2001,
+      "imdbPoints": 8.8,
+      "info": "First installment in the film adaptation of J.R.R. Tolkien's novel.",
+      "director": "Peter Jackson",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 14,
+      "frontText": "Inception",
+      "image": "",
+      "backAnswer": "Description: A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+      "releaseYear": 2010,
+      "imdbPoints": 8.8,
+      "info": "Directed by Christopher Nolan.",
+      "director": "Christopher Nolan",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 15,
+      "frontText": "The Lord of the Rings: The Two Towers",
+      "image": "",
+      "backAnswer": "Description: While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron's new ally, Saruman, and his hordes of Isengard.",
+      "releaseYear": 2002,
+      "imdbPoints": 8.7,
+      "info": "Second installment in the film adaptation of J.R.R. Tolkien's novel.",
+      "director": "Peter Jackson",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    },
+    {
+      "id": 16,
+      "frontText": "The Matrix Reloaded",
+      "image": "",
+      "backAnswer": "Description: Neo and his allies race against time before the machines discover the city of Zion and destroy it. While seeking the truth about the Matrix, Neo must save Trinity from a dark fate.",
+      "releaseYear": 2003,
+      "imdbPoints": 7.2,
+      "info": "Sequel to 'The Matrix.'",
+      "director": "Wachowskis",
+      "lastModificationDateTime": "12/18/2023",
+      "status": "Mark as Noted"
+    }
+]
+    "projects": [
+    {
+      "id": 1,
+      "title": "Project 1",
+      "description": "",
+      "link": ""
+    },
+    {
+      "id": 2,
+      "title": "Project 2",
+      "description": "",
+      "link": ""
+    },
+    {
+      "id": 3,
+      "title": "Project 3",
+      "description": "",
+      "link": ""
+    },
+    {
+      "id": 4,
+      "title": "Project 4",
+      "description": "",
+      "link": ""
+    },
+    {
+      "id": 5,
+      "title": "Project 5",
+      "description": "",
+      "link": ""
+    }
+  ],
+  "messages": [
+    {
+      "subject": "",
+      "email": "",
+      "content": "",
+      "date": 34567,
+      "id": 37
+    },
+    {
+      "name": "",
+      "email": "",
+      "message": "",
+      "createdDate": "",
+      "id": 38
+    }
+  ]
+}
