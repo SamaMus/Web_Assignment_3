@@ -9,16 +9,8 @@ const FlashCard = ({
   isSelected,
   onRearrange,
 }) => {
-  const { id, frontText, backAnswer, image, lastModificationDateTime, status } = card;
+  const { id, frontText: movie, backAnswer: movieDescription, image, lastModificationDateTime, status } = card;
   const [isFlipped, setFlipped] = useState(false);
-
-  const handleFlip = () => {
-    setFlipped(!isFlipped);
-  };
-
-  const handleStatusChange = (newStatus) => {
-    // You can implement the status change logic here if needed
-  };
 
   const handleDragStart = (e) => {
     e.dataTransfer.setData('text/plain', id);
@@ -47,7 +39,7 @@ const FlashCard = ({
     >
       <div className="card-content front">
         <div className="content">
-          <h3>{frontText}</h3>
+          <h3>{movie}</h3>
           <p>Status: {status}</p>
           <p>Last Modified: {new Date(lastModificationDateTime).toLocaleString()}</p>
         </div>
@@ -55,7 +47,7 @@ const FlashCard = ({
       <div className="card-content back">
         <div className="content">
           <img src={image} alt="Card Back" />
-          <h3>{backAnswer}</h3>
+          <h3>{movieDescription}</h3>
           <p>Status: {status}</p>
           <p>Last Modified: {new Date(lastModificationDateTime).toLocaleString()}</p>
           <div className="status-buttons">
