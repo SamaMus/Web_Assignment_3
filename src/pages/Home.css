@@ -22,6 +22,15 @@ body {
     justify-content: center;
     min-height: 100vh;
 }
+.buttons-container {
+    margin-bottom: 20px;
+}
+
+h1,
+h2,
+p {
+    text-align: center;
+}
 
 .welcome-text {
     font-size: 2.5rem;
