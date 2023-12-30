@@ -9,13 +9,7 @@ import '../assets/style/pages/cards.css';
 
 const FlashCardsPage = () => {
   const [cards, setCards] = useState([]);
-  const [selectedCards, setSelectedCards] = useState([]);
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-  const [updateCard, setUpdateCard] = useState(null);
-  const [searchInput, setSearchInput] = useState('');
-  const [selectedStatus, setSelectedStatus] = useState('All status');
-  const [selectedSortings, setSelectedSortings] = useState(['newestToOldest']);
+  const [selectedStatus] = useState('All status');
   const notify = (message) => toast.success(message);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
@@ -80,7 +74,6 @@ const FlashCardsPage = () => {
     };
   }, [isLoadingMore, hasMore, loadMore]);
 
-  // ... (the rest of your FlashCardsPage.jsx)
 
   const handleDelete = async (id) => {
     try {
