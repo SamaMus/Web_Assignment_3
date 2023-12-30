@@ -12,6 +12,14 @@ const FlashCard = ({
   const { id, frontText: movie, backAnswer: movieDescription, image, lastModificationDateTime, status } = card;
   const [isFlipped, setFlipped] = useState(false);
 
+  const handleFlip = () => {
+    setFlipped(!isFlipped);
+  };
+
+  const handleStatusChange = (newStatus) => {
+  
+  };
+
   const handleDragStart = (e) => {
     e.dataTransfer.setData('text/plain', id);
   };
