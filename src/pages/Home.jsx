@@ -32,19 +32,11 @@ const Home = () => {
       <header>
         <h1>Welcome to My Portfolio</h1>
         {/* Navigation links */}
-      {/* Buttons container */}
-<div className="buttons-container">
-  <Link to="/flashcards" className="nav-button">
-    Flashcards
-  </Link>
-  <Link to="/contact" className="nav-button">
-    Contact Me
-  </Link>
-  <Link to="/" className="nav-button">
-    Home
-  </Link>
-</div>
-
+        <div className="header-buttons">
+          <Link to="/flashcards">Flashcards</Link>
+          <Link to="/contact">Contact Me</Link>
+          <Link to="/">Home</Link>
+        </div>
       </header>
       {/* Main content section */}
       <div className="content">
@@ -64,6 +56,13 @@ const Home = () => {
               </a>
             </div>
           ))}
+        </div>
+
+        {/* Buttons container */}
+        <div className="buttons-container">
+          <Link to="/flashcards" className="nav-button">Flashcards</Link>
+          <Link to="/contact" className="nav-button">Contact Me</Link>
+          <Link to="/" className="nav-button">Home</Link>
         </div>
       </div>
     </div>
