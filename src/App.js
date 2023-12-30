@@ -1,16 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home'
-import FlashCardsPage from './pages/FlashCardsPage';
-// import ContactMe from './ContactMe'; // Create a ContactMe component
+import FlashCardsPage from './pages/FlashCardsPage.jsx';
+import FlashCard from './pages/FlashCard.jsx';
 
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/flashcards" component={FlashCardsPage} />
-        {/* <Route path="/contact" component={ContactMe} /> */}
-        <Route path="/" component={Home} />
+        <Route path="/home" component={<Home/>} />
+        <Route path="/flashcard" component={<FlashCard/>} />
+       <Route path="/flashcardspage" component={<FlashCardsPage/>} />
+
       </Switch>
     </Router>
   );
