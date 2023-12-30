@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // import FlashCard from './FlashCard';
-import Navbar from '../components/Navbar.jsx';
-import Notification from '../components/Notification.jsx';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import '../assets/style/pages/cards.css';
+// import Navbar from '../components/Navbar.jsx';
+// import Notification from '../components/Notification.jsx';
+// import { toast } from 'react-toastify';
+// import '../assets/style/pages/cards.css';
 
 const FlashCardsPage = () => {
-  const [cards, setCards] = useState([]);
-  const [selectedStatus] = useState('All status');
-  const notify = (message) => toast.success(message);
+  const [ setCards] = useState([]);
+  // const [selectedStatus] = useState('All status');
+  // const notify = (message) => toast.success(message);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -79,7 +78,7 @@ const FlashCardsPage = () => {
     try {
       setCards((prevCards) => prevCards.filter((card) => card.id !== id));
 
-      notify('Card deleted successfully!');
+      // notify('Card deleted successfully!');
       await axios.delete(`http://localhost:3001/cards/${id}`);
     } catch (error) {
       console.error('Error deleting card:', error);
@@ -88,15 +87,15 @@ const FlashCardsPage = () => {
 
   return (
     <div>
-      <Navbar />
-      <Notification notify={notify} />
+      {/* <Navbar /> */}
+      {/* <Notification notify={notify} /> */}
 <div className="main-content">
     <h1>Flash Cards</h1>
-        <FlashCardList cards={cards} />
- <FilterOptions
+        {/* <FlashCardList cards={cards} /> */}
+ {/* <FilterOptions
           selectedStatus={selectedStatus}
           handleStatusChange={handleStatusChange}
-        />
+        /> */}
       </div>
     </div>
   );

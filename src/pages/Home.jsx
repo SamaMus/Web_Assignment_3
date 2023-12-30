@@ -57,6 +57,13 @@ const Home = () => {
             </div>
           ))}
         </div>
+        
+        <div class="buttons-container">
+    <Link to="/flashcards" className="nav-button">Flashcards</Link>
+    <Link to="/contact" className="nav-button">Contact Me</Link>
+    <Link to="/" className="nav-button">Home</Link>
+</div>
+
       </div>
     </div>
   );
