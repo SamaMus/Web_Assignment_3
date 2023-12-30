@@ -82,7 +82,7 @@ body {
 .nav-button {
     margin: 0 10px;
     padding: 15px 30px;
-    background-color: #e74c3c;
+    background-color: #38aaf7;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -91,5 +91,5 @@ body {
 }
 
 .nav-button:hover {
-    background-color: #c0392b;
+    background-color: #5d2878;
 }
