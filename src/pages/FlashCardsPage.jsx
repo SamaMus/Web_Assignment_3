@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import FlashCard from './FlashCard';
+import FlashCard from '../pages/FlashCard';
 // import Navbar from '../components/Navbar.jsx';
 // import Notification from '../components/Notification.jsx';
 // import { toast } from 'react-toastify';
@@ -78,7 +78,7 @@ const FlashCardsPage = () => {
     try {
       setCards((prevCards) => prevCards.filter((card) => card.id !== id));
 
-      // notify('Card deleted successfully!');
+     notify('Card deleted successfully!');
       await axios.delete(`http://localhost:3001/cards/${id}`);
     } catch (error) {
       console.error('Error deleting card:', error);
