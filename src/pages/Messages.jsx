@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar.jsx";
-import MessageItem from "../components/MessageItem.jsx";
-import "../assets/style/pages/messages.css";
+// import MessageItem from "../components/MessageItem.jsx";
+import "../assets/style/Messages.css";
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FlashCard from '../pages/FlashCard';
-// import Navbar from '../components/Navbar.jsx';
+ import Navbar from '../components/Navbar.jsx';
 // import Notification from '../components/Notification.jsx';
 // import { toast } from 'react-toastify';
 // import '../assets/style/pages/cards.css';
@@ -74,20 +74,20 @@ const FlashCardsPage = () => {
   }, [isLoadingMore, hasMore, loadMore]);
 
 
-  const handleDelete = async (id) => {
-    try {
-      setCards((prevCards) => prevCards.filter((card) => card.id !== id));
+  // const handleDelete = async (id) => {
+  //   try {
+  //     setCards((prevCards) => prevCards.filter((card) => card.id !== id));
 
-     notify('Card deleted successfully!');
-      await axios.delete(`http://localhost:3001/cards/${id}`);
-    } catch (error) {
-      console.error('Error deleting card:', error);
-    }
-  };
+  //    notify('Card deleted successfully!');
+  //     await axios.delete(`http://localhost:3001/cards/${id}`);
+  //   } catch (error) {
+  //     console.error('Error deleting card:', error);
+  //   }
+  // };
 
   return (
     <div>
-      {/* <Navbar /> */}
+       <Navbar /> 
       {/* <Notification notify={notify} /> */}
 <div className="main-content">
     <h1>Flash Cards</h1>
