@@ -7,8 +7,8 @@ import axios from 'axios';
 // import '../assets/style/pages/cards.css';
 
 const FlashCardsPage = () => {
-  const [ setCards] = useState([]);
-  // const [selectedStatus] = useState('All status');
+  const [cards, setCards] = useState([]);
+   const [selectedStatus] = useState('All status');
   // const notify = (message) => toast.success(message);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);

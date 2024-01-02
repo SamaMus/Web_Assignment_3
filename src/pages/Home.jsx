@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Home.css';
+import './ContactPage.jsx'
 
 const Home = () => {
   // State to store the projects data
