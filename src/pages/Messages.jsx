@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Navbar from "../components/Navbar.jsx";
-// import MessageItem from "../components/MessageItem.jsx";
-import "../assets/style/Messages.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Navbar from '../components/Navbar.jsx';
+import MessageContent from '../components/MessageContent.jsx';
+import '../assets/style/Messages.css';
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);
@@ -10,10 +10,10 @@ const Messages = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/messages");
+        const response = await axios.get('http://localhost:3001/messages');
         setMessages(response.data);
       } catch (error) {
-        console.error("Error fetching messages:", error);
+        console.error('Error fetching messages:', error);
       }
     };
 
@@ -23,10 +23,9 @@ const Messages = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:3001/messages/${id}`);
-
       setMessages((prevMessages) => prevMessages.filter((msg) => msg.id !== id));
     } catch (error) {
-      console.error("Error deleting message:", error);
+      console.error('Error deleting message:', error);
     }
   };
 
@@ -34,14 +33,12 @@ const Messages = () => {
     <div>
       <Navbar />
       <div className="container">
-        <section className="messages-section">
-          <h1>Messages</h1>
-          <div className="messages-list">
-            {messages.map((message) => (
-              <MessageItem key={message.id} message={message} onDelete={handleDelete} />
-            ))}
-          </div>
-        </section>
+        <h1>Messages</h1>
+        <div className="messages-list">
+          {messages.map((message) => (
+            <MessageContent key={message.id} message={message} onDelete={handleDelete} />
+          ))}
+        </div>
       </div>
     </div>
   );

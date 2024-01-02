@@ -1,13 +1,13 @@
-import React from "react";
-import "../assets/style/components/projects.css";
+import React from 'react';
+import '../assets/style/MyProjects.css';
 
-const MyProject = ({ projects }) => {
+const MyProjects = ({ projects }) => {
   return (
-    <section className="projects-section">
+    <div className="my-projects">
       <h2>Projects</h2>
       <div className="project-list">
-        {projects.map((project, index) => (
-          <div className="project" key={index}>
+        {projects.map((project) => (
+          <div key={project.id} className="project">
             <h3>{project.title}</h3>
             <p>{project.description}</p>
             <a href={project.link} target="_blank" rel="noopener noreferrer">
@@ -16,8 +16,8 @@ const MyProject = ({ projects }) => {
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 };
 
-export default MyProject;
+export default MyProjects;

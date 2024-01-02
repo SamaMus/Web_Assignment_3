@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './FlashCard.css';
+import '../assets/style/FlashCard.css';
 
 const FlashCard = ({
   card,

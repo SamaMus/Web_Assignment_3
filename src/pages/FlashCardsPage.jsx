@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import FlashCard from '../pages/FlashCard';
- import Navbar from '../components/Navbar.jsx';
-// import Notification from '../components/Notification.jsx';
-// import { toast } from 'react-toastify';
-// import '../assets/style/pages/cards.css';
+import FlashCardContent from '../components/FlashCardContent.jsx';
+import Navbar from '../components/Navbar.jsx';
+import Notify from '../components/Notify.jsx';
+import { toast } from 'react-toastify';
 
-const FlashCardsPage = () => {
+const FlashCardPage = () => {
   const [cards, setCards] = useState([]);
-   const [selectedStatus] = useState('All status');
-  // const notify = (message) => toast.success(message);
+  const [selectedStatus] = useState('All status');
+  const notify = (message) => toast.success(message);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -73,32 +72,32 @@ const FlashCardsPage = () => {
     };
   }, [isLoadingMore, hasMore, loadMore]);
 
+  const handleDelete = async (id) => {
+    try {
+      setCards((prevCards) => prevCards.filter((card) => card.id !== id));
 
-  // const handleDelete = async (id) => {
-  //   try {
-  //     setCards((prevCards) => prevCards.filter((card) => card.id !== id));
-
-  //    notify('Card deleted successfully!');
-  //     await axios.delete(`http://localhost:3001/cards/${id}`);
-  //   } catch (error) {
-  //     console.error('Error deleting card:', error);
-  //   }
-  // };
+      notify('Card deleted successfully!');
+      await axios.delete(`http://localhost:3001/cards/${id}`);
+    } catch (error) {
+      console.error('Error deleting card:', error);
+    }
+  };
 
   return (
     <div>
-       <Navbar /> 
-      {/* <Notification notify={notify} /> */}
-<div className="main-content">
-    <h1>Flash Cards</h1>
-        {/* <FlashCardList cards={cards} /> */}
- {/* <FilterOptions
-          selectedStatus={selectedStatus}
-          handleStatusChange={handleStatusChange}
-        /> */}
+      <Navbar />
+      <Notify />
+      <div className="main-content">
+        <h1>Flash Cards</h1>
+        <div className="flashcard-list">
+          {cards.map((card) => (
+            <FlashCardContent key={card.id} card={card} onDelete={handleDelete} />
+          ))}
+        </div>
+        {/* Add any other components or elements you want here */}
       </div>
     </div>
   );
 };
 
-export default FlashCardsPage;
+export default FlashCardPage;
