@@ -1,25 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import FlashCardContent from '../components/FlashCardContent.jsx';
-import CardModalPage from '../components/CardModalPage.jsx';
-import Navbar from '../components/Navbar.jsx';
-import Notify from '../components/Notify.jsx';
-import { toast } from 'react-toastify';
+import React, { useState, useEffect, useCallback } from "react";
+import axios from "axios";
+import FlashCardContent from "../components/FlashCardContent.jsx";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Navbar from "../components/Navbar.jsx";
+import CreateCardModal from "../components/CustomCardModal.jsx";
+import EditCardModal from "../components/EditCardModal.jsx";
+import Notify from "../components/Notify.jsx";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../assets/style/FlashCardsPage.css";
 
 const FlashCardPage = () => {
   const [cards, setCards] = useState([]);
-  const [selectedStatus, setSelectedStatus] = useState('All status');
-  const [searchInput, setSearchInput] = useState('');
-  const [sortBy, setSortBy] = useState('newestToOldest');
+  const [selectedCards, setSelectedCards] = useState([]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editCard, setEditCard] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("All status");
+  const [selectedSortings, setSelectedSortings] = useState(["newestToOldest"]);
+  const notify = useCallback((message) => toast.success(message), []);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const notify = (message) => toast.success(message);
 
-  const fetchInitialCards = async () => {
+  const fetchInitialCards = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/cards?_page=${page}&_limit=6&_sort=${sortBy}`);
+      const response = await axios.get(`http://localhost:3001/cards?_page=${page}&_limit=6&_sort=order`);
       const initialCards = response.data;
 
       if (initialCards.length === 0) {
@@ -30,14 +37,14 @@ const FlashCardPage = () => {
       setPage(page + 1);
       setCards(initialCards);
     } catch (error) {
-      console.error('Error fetching initial cards:', error);
+      console.error("Error fetching initial cards:", error);
     }
-  };
+  }, [page]);
 
-  const loadMore = async () => {
+  const loadMore = useCallback(async () => {
     try {
       setIsLoadingMore(true);
-      const response = await axios.get(`http://localhost:3001/cards?_page=${page}&_limit=6&_sort=${sortBy}`);
+      const response = await axios.get(`http://localhost:3001/cards?_page=${page}&_limit=6`);
       const newCards = response.data;
 
       if (newCards.length === 0) {
@@ -50,15 +57,15 @@ const FlashCardPage = () => {
         setCards((prevCards) => [...prevCards, ...newCards]);
       }, 750);
     } catch (error) {
-      console.error('Error fetching more cards:', error);
+      console.error("Error fetching more cards:", error);
     } finally {
       setIsLoadingMore(false);
     }
-  };
+  }, [page]);
 
   useEffect(() => {
     fetchInitialCards();
-  }, [sortBy]);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,39 +76,184 @@ const FlashCardPage = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [isLoadingMore, hasMore, loadMore, sortBy]);
+  }, [isLoadingMore, hasMore, loadMore]);
+
+  const handleSelectCard = (cardId) => {
+    setSelectedCards((prevSelected) =>
+      prevSelected.includes(cardId)
+        ? prevSelected.filter((id) => id !== cardId)
+        : [...prevSelected, cardId]
+    );
+  };
+
+  const handleShare = () => {
+    const selectedCardDetails = cards
+      .filter((card) => selectedCards.includes(card.id))
+      .map(({ id, frontText, backAnswer, image }) => ({ id, frontText, backAnswer, image }));
+
+    const jsonData = JSON.stringify(selectedCardDetails, null, 2);
+
+    const mailtoLink = `mailto:?subject=Flash Cards&body=${encodeURIComponent(jsonData)}`;
+    window.location.href = mailtoLink;
+  };
+
+  const handleStatusChange = (event) => {
+    const newStatus = event.target.value;
+    setSelectedStatus(newStatus);
+    setCards([]);
+  };
+
+  const handleSortingChange = (event) => {
+    const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
+    setSelectedSortings(selectedOptions);
+  };
+
+  const handleRearrangeCards = async (
+    draggedCardId,
+    draggedOrder,
+    draggedFrontText,
+    draggedBackAnswer,
+    draggedStatus,
+    draggedModifiedTime,
+    draggedImage,
+    dropTargetCardId,
+    dropTargetOrder,
+    dropTargetFrontText,
+    dropTargetBackAnswer,
+    dropTargetStatus,
+    dropTargetModifiedTime,
+    dropTargetImage
+  ) => {
+    try {
+      const draggedIndex = cards.findIndex((card) => card.id === Number(draggedCardId));
+      const dropTargetIndex = cards.findIndex((card) => card.id === Number(dropTargetCardId));
+
+      const newCards = [...cards];
+      [newCards[draggedIndex], newCards[dropTargetIndex]] = [newCards[dropTargetIndex], newCards[draggedIndex]];
+
+      newCards[draggedIndex].order = dropTargetOrder;
+      newCards[dropTargetIndex].order = draggedOrder;
+
+      newCards[draggedIndex].frontText = dropTargetFrontText;
+      newCards[dropTargetIndex].frontText = draggedFrontText;
+
+      newCards[draggedIndex].backAnswer = dropTargetBackAnswer;
+      newCards[dropTargetIndex].backAnswer = draggedBackAnswer;
+
+      newCards[draggedIndex].status = dropTargetStatus;
+      newCards[dropTargetIndex].status = draggedStatus;
+
+      newCards[draggedIndex].lastModificationDateTime = draggedModifiedTime;
+      newCards[dropTargetIndex].lastModificationDateTime = dropTargetModifiedTime;
+
+      newCards[draggedIndex].id = draggedModifiedTime;
+      newCards[dropTargetIndex].id = dropTargetModifiedTime;
+
+
+      await axios.put(`http://localhost:3001/cards/${draggedCardId}`, {
+        order: dropTargetOrder,
+        frontText: dropTargetFrontText,
+        backAnswer: dropTargetBackAnswer,
+        status: dropTargetStatus,
+        lastModificationDateTime: draggedModifiedTime,
+        image: dropTargetImage,
+      });
+
+      await axios.put(`http://localhost:3001/cards/${dropTargetCardId}`, {
+        order: draggedOrder,
+        frontText: draggedFrontText,
+        backAnswer: draggedBackAnswer,
+        status: draggedStatus,
+        lastModificationDateTime: dropTargetModifiedTime,
+        image: draggedImage,
+      });
+
+      setCards(newCards);
+    } catch (error) {
+      console.error("Error rearranging cards:", error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        let apiUrl = "http://localhost:3001/cards";
+        if (selectedStatus !== "All status") {
+          apiUrl += `?status=${selectedStatus}`;
+        }
+
+        const response = await axios.get(apiUrl);
+
+        let sortedCards = response.data;
+
+        selectedSortings.forEach((sortingOption) => {
+          switch (sortingOption) {
+            case "frontTextAZ":
+              sortedCards = sortedCards.sort((a, b) => a.frontText.localeCompare(b.frontText));
+              break;
+            case "frontTextZA":
+              sortedCards = sortedCards.sort((a, b) => b.frontText.localeCompare(a.frontText));
+              break;
+            case "backAnswerAZ":
+              sortedCards = sortedCards.sort((a, b) => a.backAnswer.localeCompare(b.backAnswer));
+              break;
+            case "backAnswerZA":
+              sortedCards = sortedCards.sort((a, b) => b.backAnswer.localeCompare(a.backAnswer));
+              break;
+            case "idDescending":
+              sortedCards = sortedCards.sort((a, b) => b.id - a.id);
+              break;
+            case "newestToOldest":
+              sortedCards = sortedCards.sort((a, b) => new Date(b.lastModificationDateTime) - new Date(a.lastModificationDateTime));
+              break;
+            default:
+              break;
+          }
+        });
+
+        setCards(sortedCards);
+      } catch (error) {
+        console.error("Error fetching cards:", error);
+      }
+    };
+
+    fetchCards();
+  }, [selectedStatus, selectedSortings]);
 
   const handleDelete = async (id) => {
     try {
       setCards((prevCards) => prevCards.filter((card) => card.id !== id));
 
-      notify('Card deleted successfully!');
+      notify("Card deleted successfully!");
       await axios.delete(`http://localhost:3001/cards/${id}`);
     } catch (error) {
-      console.error('Error deleting card:', error);
+      console.error("Error deleting card:", error);
     }
+  };
+
+  const handleEdit = (card) => {
+    setEditCard(card);
+    setIsEditModalOpen(true);
   };
 
   const handleCreate = async (newCard) => {
     try {
       const currentDateTime = new Date().toLocaleDateString();
 
-      // Fetch existing cards to determine the next order
-      const response = await axios.get('http://localhost:3001/cards');
+      const response = await axios.get("http://localhost:3001/cards");
       const existingCards = response.data;
 
-      // Determine the next order by incrementing the maximum existing order by 1
       const maxOrder = existingCards.reduce((maxOrder, card) => Math.max(maxOrder, card.order || 0), 0);
-      const nextOrder = Math.max(maxOrder + 1, 100); // Start from 100 or increment if necessary
+      const nextOrder = Math.max(maxOrder + 1, 100); 
 
       newCard.lastModificationDateTime = currentDateTime;
-      newCard.status = 'Want to Learn';
-      newCard.order = nextOrder; // Assign the next order
+      newCard.status = "Want to Learn";
+      newCard.order = nextOrder; 
 
       setCards((prevCards) => {
         const updatedCards = [...prevCards, newCard];
@@ -113,74 +265,134 @@ const FlashCardPage = () => {
         return sortedCards;
       });
 
-      await axios.post('http://localhost:3001/cards', newCard);
+      await axios.post("http://localhost:3001/cards", newCard);
 
-      notify('Card created successfully!');
+      notify("Card created successfully!");
 
       setIsCreateModalOpen(false);
+      window.location.reload();
     } catch (error) {
-      console.error('Error creating card:', error);
+      console.error("Error creating card:", error);
     }
+  };
+
+  const handleEditCard = async (editedCard) => {
+    try {
+      setCards((prevCards) =>
+        prevCards.map((card) => (card.id === editedCard.id ? editedCard : card))
+      );
+
+      await axios.put(`http://localhost:3001/cards/${editedCard.id}`, editedCard);
+
+      notify("Card updated successfully!");
+      setIsEditModalOpen(false);
+    } catch (error) {
+      console.error("Error updating card:", error);
+    }
+  };
+
+  const openCreateModal = () => {
+    setIsCreateModalOpen(true);
+  };
+
+  const closeCreateModal = () => {
+    setIsCreateModalOpen(false);
+  };
+
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
   };
 
   const handleSearchInputChange = (event) => {
     setSearchInput(event.target.value);
   };
 
-  const handleStatusChange = (event) => {
-    const newStatus = event.target.value;
-    setSelectedStatus(newStatus);
-    setCards([]);
-  };
-
-  const handleSortingChange = (event) => {
-    const newSortBy = event.target.value;
-    setSortBy(newSortBy);
-  };
+  const filteredCards = cards.filter((card) =>
+    card.frontText.toLowerCase().includes(searchInput.toLowerCase()) ||
+    card.backAnswer.toLowerCase().includes(searchInput.toLowerCase())
+  );
 
   return (
     <div>
       <Navbar />
       <Notify />
-      <div className="main-content">
-        <h1>Flash Cards</h1>
-        <div className="flashcard-operations">
-          <select id="filterstatus" name="category" value={selectedStatus} onChange={handleStatusChange}>
-            <option>All status</option>
-            <option>Want to Learn</option>
-            <option>Mark as Noted</option>
-            <option>Learned</option>
-          </select>
-          <input
-            className="search"
-            placeholder="Enter text to search..."
-            value={searchInput}
-            onChange={handleSearchInputChange}
-          ></input>
-          <select id="sortOrder" name="sortOrder" value={sortBy} onChange={handleSortingChange}>
-            <option value="newestToOldest">Newest to Oldest</option>
-            <option value="frontTextAZ">Sort frontText A-Z</option>
-            <option value="frontTextZA">Sort frontText Z-A</option>
-            <option value="backAnswerAZ">Sort backAnswer A-Z</option>
-            <option value="backAnswerZA">Sort backAnswer Z-A</option>
-            {/* Add more sorting options as needed */}
-          </select>
+      <div className="cards-location">
+        <div className="share-section">
+          <button className="share-btn btn btn" onClick={handleShare}>
+            Share Selected Cards
+          </button>
         </div>
-        <button className="create-btn btn btn" onClick={() => setIsCreateModalOpen(true)}>
-          Create
-        </button>
-        <div className="flashcard-list">
-          {cards
-            .filter((card) =>
-              card.frontText.toLowerCase().includes(searchInput.toLowerCase()) ||
-              card.backAnswer.toLowerCase().includes(searchInput.toLowerCase())
-            )
-            .map((card) => (
-              <FlashCardContent key={card.id} card={card} onDelete={handleDelete} />
+        <div className="creating">
+          <h1>Flash Cards</h1>
+          <form id="operations">
+            <select
+              id="filterstatus"
+              name="category"
+              value={selectedStatus}
+              onChange={handleStatusChange}
+            >
+              <option>All status</option>
+              <option>Want to Learn</option>
+              <option>Mark as Noted</option>
+              <option>Learned</option>
+            </select>
+            <input
+              className="search"
+              placeholder="Enter front Text..."
+              value={searchInput}
+              onChange={handleSearchInputChange}
+            ></input>
+            <select
+              id="sortOrder"
+              name="sortOrder"
+              value={selectedSortings}
+              onChange={handleSortingChange}
+            >
+              <option value="newestToOldest">Choose sorting option...</option>
+              <option value="frontTextAZ">Sort frontText A-Z</option>
+              <option value="frontTextZA">Sort frontText Z-A</option>
+              <option value="backAnswerAZ">Sort backAnswer A-Z</option>
+              <option value="backAnswerZA">Sort backAnswer Z-A</option>
+            </select>
+          </form>
+          <button className="create-btn btn btn" onClick={openCreateModal}>
+            Create
+          </button>
+        </div>
+        <InfiniteScroll
+          dataLength={cards.length}
+          next={loadMore}
+          hasMore={hasMore}
+          loader={<h4 className="loading">Loading More...</h4>}
+          endMessage={<p className="finished-loading">No more cards to load.</p>}
+        >
+          <div className="flashcard-list">
+            {filteredCards.map((card, index) => (
+              <FlashCardContent
+                key={card.id}
+                card={card}
+                onDelete={handleDelete}
+                onEdit={handleEdit}
+                onSelect={handleSelectCard}
+                isSelected={selectedCards.includes(card.id)}
+                onRearrange={handleRearrangeCards}
+                cards={cards}
+              />
             ))}
-        </div>
+          </div>
+        </InfiniteScroll>
+
       </div>
-      {isCreateModalOpen && <CardModalPage onCreate={handleCreate} onClose={() => setIsCreateModalOpen(false)} />}
+      {isCreateModalOpen && (
+        <CreateCardModal onCreate={handleCreate} onClose={closeCreateModal} />
+      )}
+      {isEditModalOpen && (
+        <EditCardModal
+          card={editCard}
+          onEdit={handleEditCard}
+          onClose={closeEditModal}
+        />
+      )}
     </div>
   );
 };

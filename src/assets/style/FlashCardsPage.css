@@ -1,0 +1,92 @@
+
+.cards-location {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.share-section {
+    margin-bottom: 20px;
+}
+
+.share-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.creating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+#operations {
+    display: flex;
+    gap: 10px;
+}
+
+#filterstatus,
+#sortOrder {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.search {
+    padding: 10px;
+    flex-grow: 1;
+    font-size: 14px;
+}
+
+.create-btn {
+    background-color: #2196f3;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.flashcard-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.flashcard-list .loading,
+.flashcard-list .finished-loading {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+/* Styling for FlashCardContent component can be added here if needed */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-card-modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
