@@ -8,7 +8,7 @@ import ContactPage from './pages/ContactPage.jsx';
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/Web_Assignment_3">
       <Navbar/>
       <Switch>
         <Route path="/" exact component={Home} />
