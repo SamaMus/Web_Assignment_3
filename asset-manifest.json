@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/SamaMus/Web_Assignment_3.git/static/css/main.9ffaf4d4.css",
+    "main.js": "/SamaMus/Web_Assignment_3.git/static/js/main.8a2da107.js",
+    "index.html": "/SamaMus/Web_Assignment_3.git/index.html",
+    "main.9ffaf4d4.css.map": "/SamaMus/Web_Assignment_3.git/static/css/main.9ffaf4d4.css.map",
+    "main.8a2da107.js.map": "/SamaMus/Web_Assignment_3.git/static/js/main.8a2da107.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9ffaf4d4.css",
+    "static/js/main.8a2da107.js"
+  ]
+}
