@@ -18,8 +18,6 @@ const CustomCardModal = ({ onCreate, onClose }) => {
       status,
       lastModificationDateTime: currentDateTime,
     };
-
-    // Call the provided onCreate function with the new card
     onCreate(newCard);
   };
 
