@@ -5,6 +5,7 @@ import '../assets/style/FlashCardContent.css';
 const FlashCardContent = ({ card, onDelete, onEdit }) => {
   const { id, image, frontText, status, lastModificationDateTime, backAnswer } = card;
   const [isHovered, setIsHovered] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const handleDeleteClick = () => {
     onDelete(id);
@@ -14,29 +15,34 @@ const FlashCardContent = ({ card, onDelete, onEdit }) => {
     onEdit(card);
   };
 
+  const handleCardClick = () => {
+    setIsFlipped(!isFlipped);
+  };
+
   return (
     <div
-      className={`flashcard-content ${isHovered ? 'hovered' : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={`flashcard-content ${isFlipped ? 'flipped' : ''}`}
+      onClick={handleCardClick}
     >
-      <div className="front">
-        {image ? <img src={image} alt="Card" className="card-image" /> : <h3 className="frontTxt">{frontText}</h3>}
-        <p className="status">Status: {status}</p>
-        <p className="last-modification">Last Modified: {new Date(lastModificationDateTime).toLocaleDateString()}</p>
-        {isHovered && (
-          <div className="buttons">
-            <button className="edit-button" onClick={handleEditClick}>
-              Edit
-            </button>
-            <button className="delete-button" onClick={handleDeleteClick}>
-              Delete
-            </button>
-          </div>
-        )}
-      </div>
-      <div className="back">
-        <p className="backTxt">{backAnswer}</p>
+      <div className="card">
+        <div className={`front ${isFlipped ? 'hidden' : ''}`}>
+          {image ? <img src={image} alt="Card" className="card-image" /> : <h3 className="frontTxt">{frontText}</h3>}
+          <p className="status">Status: {status}</p>
+          <p className="last-modification">Last Modified: {new Date(lastModificationDateTime).toLocaleDateString()}</p>
+          {isHovered && (
+            <div className="buttons">
+              <button className="edit-button" onClick={handleEditClick}>
+                Edit
+              </button>
+              <button className="delete-button" onClick={handleDeleteClick}>
+                Delete
+              </button>
+            </div>
+          )}
+        </div>
+        <div className={`back ${isFlipped ? '' : 'hidden'}`}>
+          <p className="backTxt">{backAnswer}</p>
+        </div>
       </div>
     </div>
   );
@@ -56,3 +62,4 @@ FlashCardContent.propTypes = {
 };
 
 export default FlashCardContent;
+

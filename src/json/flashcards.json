@@ -181,18 +181,6 @@
       "status": "Mark as Noted"
     },
     {
-      "id": 16,
-      "frontText": "The Matrix Reloaded",
-      "image": "",
-      "backAnswer": "Description: Neo and his allies race against time before the machines discover the city of Zion and destroy it. While seeking the truth about the Matrix, Neo must save Trinity from a dark fate.",
-      "releaseYear": 2003,
-      "imdbPoints": 7.2,
-      "info": "Sequel to 'The Matrix.'",
-      "director": "Wachowskis",
-      "lastModificationDateTime": "12/18/2023",
-      "status": "Mark as Noted"
-    },
-    {
       "frontText": "fgyhuijoko",
       "backAnswer": "ghbjk",
       "image": "",
@@ -212,7 +200,7 @@
     {
       "id": 2,
       "title": "Project 2",
-      "description": "",
+      "description": "React Tasks for Web and Mobile I ",
       "link": ""
     },
     {
